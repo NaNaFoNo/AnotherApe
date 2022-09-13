@@ -1,5 +1,5 @@
 
-(define-trait sip-009-nft-trait
+(define-trait sip009
   (
     ;; Last token ID, limited to uint range
     (get-last-token-id () (response uint uint))

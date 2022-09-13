@@ -1,3 +1,4 @@
+
 (define-trait sip-009-nft-trait
   (
     ;; Last token ID, limited to uint range

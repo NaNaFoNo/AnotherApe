@@ -1,15 +1,5 @@
 
-;; another-ape
-;; <add a description here>
+(impl-trait .sip009.sip009)
 
-;; constants
-;;
+(define-non-fungible-token another-ape uint)
 
-;; data maps and vars
-;;
-
-;; private functions
-;;
-
-;; public functions
-;;

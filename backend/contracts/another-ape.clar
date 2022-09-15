@@ -25,23 +25,22 @@
   (ok (nft-get-owner? another-ape id))
 )
 
-(define-public (transfer (id uint) (sender principal) (recipient principal)) 
+(define-public (transfer (id uint) (recipient principal)) 
   (begin
-    (asserts! (is-eq tx-sender sender) ERR_NOT_TOKEN_OWNER)  ;;  ??? Not get-owner(id) instead of sender  ????
+    (asserts! (is-eq (some tx-sender) (nft-get-owner? another-ape id)  ) ERR_NOT_TOKEN_OWNER)  ;;  ??? Not get-owner(id) instead of sender  ????
     ;; #[filter(id, recipient)]
-    (nft-transfer? another-ape id sender recipient)
+    (nft-transfer? another-ape id tx-sender recipient)
   )
 )
 
-(define-public (mint (recipient principal)) 
+(define-public (mint) 
   (let
     (
       (id (+ (var-get last-token-id) u1))
     )
-    ;; #[filter(recipient)]
-    (asserts! (is-eq tx-sender recipient) ERR_OWNER_ONLY)
-    (try! (stx-transfer? MINT_PRICE recipient CONTRACT_OWNER))
-    (try! (nft-mint? another-ape id recipient))
+    
+    (try! (stx-transfer? MINT_PRICE tx-sender CONTRACT_OWNER))
+    (try! (nft-mint? another-ape id tx-sender))
     (var-set last-token-id id)
     (ok id)
   )

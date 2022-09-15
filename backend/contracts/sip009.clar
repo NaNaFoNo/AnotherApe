@@ -11,6 +11,6 @@
     (get-owner (uint) (response (optional principal) uint))
 
     ;; Transfer from the sender to a new principal
-    (transfer (uint principal principal) (response bool uint))
+    (transfer (uint principal) (response bool uint))
   )
 )
